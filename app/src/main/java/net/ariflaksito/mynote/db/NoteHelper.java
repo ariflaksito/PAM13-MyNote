@@ -1,4 +1,4 @@
-package net.ariflaksito.mynote;
+package net.ariflaksito.mynote.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import net.ariflaksito.mynote.model.Note;
+
 import java.util.ArrayList;
 
 import static android.provider.BaseColumns._ID;
-import static net.ariflaksito.mynote.DatabaseContract.*;
-import static net.ariflaksito.mynote.DatabaseContract.NoteColumns.*;
+import static net.ariflaksito.mynote.db.DatabaseContract.*;
+import static net.ariflaksito.mynote.db.DatabaseContract.NoteColumns.*;
 
 public class NoteHelper {
     private static String DATABASE_TABLE = TABLE_NOTE;

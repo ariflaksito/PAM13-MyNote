@@ -1,9 +1,9 @@
-package net.ariflaksito.mynote;
+package net.ariflaksito.mynote.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import net.ariflaksito.mynote.DatabaseContract.*;
+import net.ariflaksito.mynote.db.DatabaseContract.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

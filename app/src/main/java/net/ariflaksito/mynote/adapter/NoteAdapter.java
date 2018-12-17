@@ -1,4 +1,4 @@
-package net.ariflaksito.mynote;
+package net.ariflaksito.mynote.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import net.ariflaksito.mynote.FormAddUpdateActivity;
+import net.ariflaksito.mynote.R;
+import net.ariflaksito.mynote.model.Note;
 
 import java.util.LinkedList;
 

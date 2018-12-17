@@ -11,12 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import net.ariflaksito.mynote.adapter.NoteAdapter;
+import net.ariflaksito.mynote.db.NoteHelper;
+import net.ariflaksito.mynote.model.Note;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static net.ariflaksito.mynote.FormAddUpdateActivity.REQUEST_UPDATE;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RecyclerView rvNotes;
     ProgressBar progressBar;
     FloatingActionButton fabAdd;
@@ -32,12 +36,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getSupportActionBar().setTitle("Notes");
 
-        rvNotes = (RecyclerView)findViewById(R.id.rv_notes);
+        rvNotes = (RecyclerView) findViewById(R.id.rv_notes);
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
         rvNotes.setHasFixedSize(true);
 
-        progressBar = (ProgressBar)findViewById(R.id.progressbar);
-        fabAdd = (FloatingActionButton)findViewById(R.id.fab_add);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        fabAdd = (FloatingActionButton) findViewById(R.id.fab_add);
         fabAdd.setOnClickListener(this);
 
         noteHelper = new NoteHelper(this);
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.fab_add){
+        if (view.getId() == R.id.fab_add) {
             Intent intent = new Intent(MainActivity.this, FormAddUpdateActivity.class);
             startActivityForResult(intent, FormAddUpdateActivity.REQUEST_ADD);
         }
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
 
-            if (list.size() > 0){
+            if (list.size() > 0) {
                 list.clear();
             }
         }
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             adapter.setListNotes(list);
             adapter.notifyDataSetChanged();
 
-            if (list.size() == 0){
+            if (list.size() == 0) {
                 showSnackbarMessage("Tidak ada data saat ini");
             }
         }
@@ -100,21 +104,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FormAddUpdateActivity.REQUEST_ADD){
-            if (resultCode == FormAddUpdateActivity.RESULT_ADD){
+        if (requestCode == FormAddUpdateActivity.REQUEST_ADD) {
+            if (resultCode == FormAddUpdateActivity.RESULT_ADD) {
                 new LoadNoteAsync().execute();
                 showSnackbarMessage("Satu item berhasil ditambahkan");
 
             }
-        }
-        else if (requestCode == REQUEST_UPDATE) {
+        } else if (requestCode == REQUEST_UPDATE) {
 
             if (resultCode == FormAddUpdateActivity.RESULT_UPDATE) {
                 new LoadNoteAsync().execute();
                 showSnackbarMessage("Satu item berhasil diubah");
-            }
-
-            else if (resultCode == FormAddUpdateActivity.RESULT_DELETE) {
+            } else if (resultCode == FormAddUpdateActivity.RESULT_DELETE) {
                 int position = data.getIntExtra(FormAddUpdateActivity.EXTRA_POSITION, 0);
                 list.remove(position);
                 adapter.setListNotes(list);
@@ -127,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (noteHelper != null){
+        if (noteHelper != null) {
             noteHelper.close();
         }
     }
 
-    private void showSnackbarMessage(String message){
+    private void showSnackbarMessage(String message) {
         Snackbar.make(rvNotes, message, Snackbar.LENGTH_SHORT).show();
     }
 }

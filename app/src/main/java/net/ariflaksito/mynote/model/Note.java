@@ -1,4 +1,4 @@
-package net.ariflaksito.mynote;
+package net.ariflaksito.mynote.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

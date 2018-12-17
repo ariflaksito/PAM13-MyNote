@@ -1,4 +1,4 @@
-package net.ariflaksito.mynote;
+package net.ariflaksito.mynote.db;
 
 import android.provider.BaseColumns;
 

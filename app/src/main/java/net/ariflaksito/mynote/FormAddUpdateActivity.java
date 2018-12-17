@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import net.ariflaksito.mynote.db.NoteHelper;
+import net.ariflaksito.mynote.model.Note;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
